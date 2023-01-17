@@ -1,18 +1,50 @@
 import { useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleXmark, faMagnifyingGlass, faSpinner } from '@fortawesome/free-solid-svg-icons';
+import {
+    faCircleXmark,
+    faEarthAsia,
+    faEllipsisVertical,
+    faMagnifyingGlass,
+    faSpinner,
+} from '@fortawesome/free-solid-svg-icons';
 import Tippy from '@tippyjs/react/headless';
 
+import Button from '~/components/Button';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 import styles from './Header.module.scss';
 import images from '~/assets/images';
 import AccountItem from '~/components/AccountItem';
+import Menu from '~/components/Popper/Menu';
+import { faCircleQuestion, faKeyboard, faMoon } from '@fortawesome/free-regular-svg-icons';
 
 const cx = classNames.bind(styles);
 
 function Header() {
     const [searchResult, setSearchResult] = useState([]);
+
+    const MENU_ITEMS = [
+        {
+            icon: <FontAwesomeIcon icon={faEarthAsia} />,
+            title: 'English',
+        },
+
+        {
+            icon: <FontAwesomeIcon icon={faCircleQuestion} />,
+            title: 'Feedback and help',
+            to: '/feedback',
+        },
+
+        {
+            icon: <FontAwesomeIcon icon={faKeyboard} />,
+            title: 'Keybroad shortcuts',
+        },
+
+        {
+            icon: <FontAwesomeIcon icon={faMoon} />,
+            title: 'Dark mode',
+        },
+    ];
 
     useEffect(() => {
         setTimeout(() => {
@@ -32,9 +64,6 @@ function Header() {
                             <PopperWrapper>
                                 <h4 className={cx('search-title')}>Accounts</h4>
                                 <AccountItem />
-                                <AccountItem />
-                                <AccountItem />
-                                <AccountItem />
                             </PopperWrapper>
                         </div>
                     )}
@@ -51,7 +80,15 @@ function Header() {
                         </button>
                     </div>
                 </Tippy>
-                <div className={cx('actions')}></div>
+                <div className={cx('actions')}>
+                    <Button text>Upload</Button>
+                    <Button primary>Log in</Button>
+                    <Menu items={MENU_ITEMS}>
+                        <button className={cx('menu')}>
+                            <FontAwesomeIcon className={cx('menu-icon')} icon={faEllipsisVertical} />
+                        </button>
+                    </Menu>
+                </div>
             </div>
         </header>
     );
