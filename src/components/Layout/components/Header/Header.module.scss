@@ -13,6 +13,7 @@
 .inner {
     height: 100%;
     width: var(--default-layout-width);
+    padding: 0 var(--default-layout-space);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -97,6 +98,29 @@
 .actions {
     display: flex;
     align-items: center;
+}
+
+// user
+
+.user-notice,
+.user-message,
+.user-upload {
+    font-size: 2.2rem;
+    width: 32px;
+    height: 32px;
+    margin: 0 8px;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.user-profile {
+    cursor: pointer;
+    margin-left: 10px;
+    width: 32px;
+    height: 32px;
+    object-fit: cover;
+    border-radius: 50%;
+    line-height: 3.2rem;
 }
 
 .menu {
